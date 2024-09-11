@@ -1,11 +1,11 @@
 import { Stack } from 'expo-router';
-import { StyleSheet, View, Text } from 'react-native'
 import { Session } from '@supabase/supabase-js'
 import { useState, useEffect } from 'react'
-import { supabase } from '~/utils/supabase'
-import { Auth } from '~/components/auth/Auth';
-import { ScreenContent } from '~/components/ScreenContent';
-import { LogoutButton } from '~/components/auth/LogoutButton';
+import { StyleSheet, View, Text } from 'react-native'
+import { supabase } from '@/utils/supabase'
+
+import { ScreenContent } from '@/components/ScreenContent';
+import { LogoutButton } from '@/components/auth/LogoutButton';
 
 export default function Home() {
   const [session, setSession] = useState<Session | null>(null)
@@ -20,12 +20,17 @@ export default function Home() {
     })
   }, [])
 
+  // Remove the session check here
+  // if (!session) {
+  //   throw new Error('No session')
+  // }
+
   return (
     <>
       <Stack.Screen options={{ title: 'Tab One1' }} />
       <View style={styles.container}>
         <ScreenContent path="app/(tabs)/index.tsx" title="Tab One" />
-        {session ? <Text>Logged in, {session.user.id}</Text> : <Auth />}
+        {session && <Text>Logged in, {session.user.id}</Text>}
         <LogoutButton />
       </View>
     </>

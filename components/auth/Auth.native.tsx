@@ -2,6 +2,7 @@ import * as AppleAuthentication from 'expo-apple-authentication';
 import { Platform, Text } from 'react-native';
 
 import { supabase } from '../../utils/supabase';
+import { router } from 'expo-router';
 
 export function Auth() {
   if (Platform.OS === 'ios')
@@ -30,7 +31,8 @@ export function Auth() {
               })
               console.log(JSON.stringify({ error, user }, null, 2))
               if (!error) {
-                // User is signed in.
+                // user is signed in
+                router.replace('/');
               }
             } else {
               throw new Error('No identityToken.')

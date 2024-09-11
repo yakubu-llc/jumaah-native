@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import { forwardRef, useState } from 'react';
 import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
@@ -12,7 +13,10 @@ export const LogoutButton = forwardRef<TouchableOpacity, TouchableOpacityProps>(
       const { error } = await supabase.auth.signOut();
       if (error) {
         console.error(error);
+      } else {
+        router.replace('/login');
       }
+
       setIsLoading(false);
     };
 
