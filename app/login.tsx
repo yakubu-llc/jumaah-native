@@ -1,8 +1,8 @@
 import { Stack } from 'expo-router';
 import { StyleSheet, View } from 'react-native'
 
-import { Auth } from '@/components/auth/Auth';
-import { ScreenContent } from '@/components/ScreenContent';
+import { Auth } from '@/components/auth';
+import { ScreenContent } from '@/components/screen-content';
 
 export default function Login() {
 

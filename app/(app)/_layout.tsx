@@ -1,9 +1,10 @@
 import { Session } from '@supabase/supabase-js';
-import { Stack, Redirect } from 'expo-router';
+import { Tabs, Redirect } from 'expo-router';
+import { Home, Cog } from 'lucide-react-native';
 import { useState, useEffect } from 'react';
 import { Text } from 'react-native';
 
-import { supabase } from '@/utils/supabase';
+import { supabase } from '@/lib/supabase';
 
 export default function AppLayout() {
   const [session, setSession] = useState<Session | null>(null);
@@ -29,5 +30,22 @@ export default function AppLayout() {
     return <Redirect href="/login" />
   }
 
-  return <Stack />
+  return (
+    <Tabs screenOptions={{ tabBarActiveTintColor: 'orange' }}>
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: 'Home',
+          tabBarIcon: ({ color }) => <Home size={28} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="two"
+        options={{
+          title: 'Settings',
+          tabBarIcon: ({ color }) => <Cog size={28} color={color} />,
+        }}
+      />
+    </Tabs>
+  );
 }

@@ -2,10 +2,10 @@ import { Stack } from 'expo-router';
 import { Session } from '@supabase/supabase-js'
 import { useState, useEffect } from 'react'
 import { StyleSheet, View, Text } from 'react-native'
-import { supabase } from '@/utils/supabase'
+import { supabase } from '@/lib/supabase'
 
-import { ScreenContent } from '@/components/ScreenContent';
-import { LogoutButton } from '@/components/auth/LogoutButton';
+import { ScreenContent } from '@/components/screen-content';
+import { LogoutButton } from '@/components/auth/logout-button';
 
 export default function Home() {
   const [session, setSession] = useState<Session | null>(null)
@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <>
       <Stack.Screen options={{ title: 'Tab One1' }} />
-      <View style={styles.container}>
+      <View className="flex-1 p-24">
         <ScreenContent path="app/(tabs)/index.tsx" title="Tab One" />
         {session && <Text>Logged in, {session.user.id}</Text>}
         <LogoutButton />
@@ -36,10 +36,3 @@ export default function Home() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-  },
-});
