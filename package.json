@@ -10,7 +10,7 @@
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" && prettier -c \"**/*.{js,jsx,ts,tsx,json}\"",
     "format": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix && prettier \"**/*.{js,jsx,ts,tsx,json}\" --write",
     "web": "expo start --web",
-    "codegen": "dotenv -e .env.local -- cross-var openapi-rq -i %EXPO_PUBLIC_BACKEND_API_URL%/openapi.yaml -c axios -o ./lib/sdk"
+    "codegen": "dotenv -e .env.local -- cross-var openapi-rq -i %EXPO_PUBLIC_BACKEND_API_URL%/openapi.yaml -c axios -o ./lib/sdk --pageParam cursor --nextPageParam nextCursor --operationId --format prettier"
   },
   "dependencies": {
     "@7nohe/openapi-react-query-codegen": "^1.6.0",
