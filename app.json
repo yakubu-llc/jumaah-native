@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "learning-expo",
-    "slug": "learning-expo",
+    "name": "jumaah-native",
+    "slug": "jumaah-native",
     "version": "1.0.0",
-    "scheme": "learning-expo",
+    "scheme": "jumaah-native",
     "web": {
       "bundler": "metro",
       "output": "static",

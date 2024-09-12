@@ -13,7 +13,7 @@ web-build/
 expo-env.d.ts
 
 # firebase/supabase/vexo
-.env
+.env*.local
 
 ios
 android
