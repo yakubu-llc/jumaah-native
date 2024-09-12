@@ -1,10 +1,15 @@
 import { Session } from '@supabase/supabase-js';
 import { Tabs, Redirect } from 'expo-router';
-import { Home, Cog } from 'lucide-react-native';
 import { useState, useEffect } from 'react';
 import { Text } from 'react-native';
-
+import { Users } from '@/lib/icons/Users';
+import { Cog } from '@/lib/icons/Cog';
+import { OpenAPI as OpenAPIConfig } from '@/lib/sdk/requests/core/OpenAPI';
 import { supabase } from '@/lib/supabase';
+import { cn } from '@/lib/utils';
+import { ReactQueryProvider } from '@/components/providers/react-query-provider';
+
+
 
 export default function AppLayout() {
   const [session, setSession] = useState<Session | null>(null);
@@ -30,22 +35,29 @@ export default function AppLayout() {
     return <Redirect href="/login" />
   }
 
+  OpenAPIConfig.BASE = process.env.EXPO_PUBLIC_BACKEND_API_URL!;
+  OpenAPIConfig.HEADERS = {
+    'Authorization': `Bearer ${session.access_token}`,
+  };
+
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: 'orange' }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <Home size={28} color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="two"
-        options={{
-          title: 'Settings',
-          tabBarIcon: ({ color }) => <Cog size={28} color={color} />,
-        }}
-      />
-    </Tabs>
+    <ReactQueryProvider>
+      <Tabs>
+        <Tabs.Screen
+          name="index"
+          options={{
+            title: 'Home',
+            tabBarIcon: ({ focused }) => <Users size={28} className={cn(focused ? 'text-primary' : 'text-muted-foreground')} />,
+          }}
+        />
+        <Tabs.Screen
+          name="two"
+          options={{
+            title: 'Settings',
+            tabBarIcon: ({ focused }) => <Cog size={28} className={cn(focused ? 'text-primary' : 'text-muted-foreground')} />,
+          }}
+        />
+      </Tabs>
+    </ReactQueryProvider>
   );
 }

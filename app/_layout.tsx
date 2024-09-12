@@ -4,7 +4,6 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useColorScheme } from '@/lib/useColorScheme';
 import { ThemeProvider } from '@/components/providers/theme-provider';
-import { ReactQueryProvider } from '@/components/providers/react-query-provider';
 import { PortalHost } from '@rn-primitives/portal';
 
 export {
@@ -17,11 +16,9 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider>
-      <ReactQueryProvider>
         <StatusBar style={isDarkColorScheme ? 'light' : 'dark'} />
         <Stack />
         <PortalHost />
-      </ReactQueryProvider>
     </ThemeProvider>
   );
 }
