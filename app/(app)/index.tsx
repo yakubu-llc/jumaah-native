@@ -5,6 +5,7 @@ import { Text } from '@/components/ui/text';
 import { JumaaIndexCard } from '@/components/jumaa/jumaa-index-card';
 import { useMusalahServiceGetMusalahById } from '@/lib/sdk/queries';
 import { useAuth } from '@/components/providers/auth-provider';
+import { LogoutButton } from '@/components/auth/logout-button';
 
 export default function Home() {
   const { user } = useAuth()
@@ -145,14 +146,12 @@ export default function Home() {
     }
   ]
 
-  const { data } = useMusalahServiceGetMusalahById({ id: 1 })
-  console.log(data)
-
   return (
     <>
       <Stack.Screen options={{ title: 'Jumaat' }} />
       <View className="flex-1">
         {user && <Text>Logged in, {user.id}</Text>}
+        <LogoutButton />
         <ScrollView className='p-4 flex flex-col space-y-4'>
           {
             jumaat.map((jumaa) => (

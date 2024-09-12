@@ -460,7 +460,7 @@ export type $OpenApiTs = {
       };
     };
   };
-  '/account/user/{id}': {
+  '/account/user/{userId}': {
     get: {
       req: GetAccountByUserIdData;
       res: {

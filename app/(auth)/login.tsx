@@ -7,7 +7,7 @@ export default function Login() {
   return (
     <>
       <Stack.Screen options={{ title: 'Login' }} />
-      <View style={styles.container}>
+      <View className="flex-1 p-24">
         <Text>Login</Text>
         <Auth />
       </View>
@@ -15,9 +15,3 @@ export default function Login() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-  },
-});

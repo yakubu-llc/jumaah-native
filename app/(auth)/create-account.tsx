@@ -1,21 +1,26 @@
-import { Stack } from 'expo-router';
-import { StyleSheet, View } from 'react-native'
-import { Text } from '@/components/ui/text'
+import { Stack, Redirect, router } from 'expo-router';
+import { View } from 'react-native'
+import { CreateAccountForm } from '@/components/auth/create-account-form';
+import { useAuth } from '@/components/providers/auth-provider';
 
 export default function CreateAccount() {
+  console.log("create account")
+  const { user, account } = useAuth()
+
+  if (!user) {
+    return router.replace("/login")
+  }
+
+  if (account) {
+    return router.replace("/")
+  }
+
   return (
     <>
       <Stack.Screen options={{ title: 'Create Account' }} />
-      <View style={styles.container}>
-        <Text>Create Account</Text>
+      <View className="flex-1 p-24">
+        <CreateAccountForm userId={user?.id} />
       </View>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-  },
-});

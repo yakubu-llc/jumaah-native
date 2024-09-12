@@ -1,26 +1,23 @@
-import { Tabs, Redirect } from 'expo-router';
+import { Tabs, Redirect, router } from 'expo-router';
 import { Users } from '@/lib/icons/Users';
 import { Cog } from '@/lib/icons/Cog';
-import { OpenAPI as OpenAPIConfig } from '@/lib/sdk/requests/core/OpenAPI';
 import { cn } from '@/lib/utils';
 import { ReactQueryProvider } from '@/components/providers/react-query-provider';
 import { useAuth } from '@/components/providers/auth-provider';
+import { Text } from '@/components/ui/text';
 
 export default function AppLayout() {
-  const { session, account } = useAuth()
+  const {isLoading, account } = useAuth()
 
-  if (!session) {
-    return <Redirect href="/login" />
+  if (isLoading) {
+    return <Text>Loading...</Text>
   }
 
   if (!account) {
-    return <Redirect href="/create-account" />
+    return router.replace("/create-account")
   }
-
-  OpenAPIConfig.BASE = process.env.EXPO_PUBLIC_BACKEND_API_URL!;
-  OpenAPIConfig.HEADERS = {
-    'Authorization': `Bearer ${session.access_token}`,
-  };
+  
+  console.log("account", account)
 
   return (
     <ReactQueryProvider>

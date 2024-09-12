@@ -110,7 +110,7 @@ export class AccountService {
   ): CancelablePromise<GetAccountByUserIdResponse> {
     return __request(OpenAPI, {
       method: 'GET',
-      url: '/account/user/{id}',
+      url: '/account/user/{userId}',
       path: {
         userId: data.userId,
       },

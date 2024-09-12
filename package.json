@@ -10,11 +10,12 @@
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" && prettier -c \"**/*.{js,jsx,ts,tsx,json}\"",
     "format": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix && prettier \"**/*.{js,jsx,ts,tsx,json}\" --write",
     "web": "expo start --web",
-    "codegen": "dotenv -e .env.local -- cross-var openapi-rq -i %EXPO_PUBLIC_BACKEND_API_URL%/openapi.yaml -c axios -o ./lib/sdk --pageParam cursor --nextPageParam nextCursor --operationId --format prettier"
+    "codegen": "dotenv -e .env.local -- cross-var openapi-rq -i %EXPO_PUBLIC_BACKEND_OPENAPI_DOCS_URL% --base %EXPO_PUBLIC_BACKEND_API_URL% -c axios -o ./lib/sdk --pageParam cursor --nextPageParam nextCursor --operationId --format prettier"
   },
   "dependencies": {
     "@7nohe/openapi-react-query-codegen": "^1.6.0",
     "@expo/vector-icons": "^14.0.0",
+    "@hookform/resolvers": "^3.9.0",
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-navigation/native": "^6.1.7",
     "@rn-primitives/dialog": "^1.0.4",
@@ -44,6 +45,7 @@
     "nativewind": "^4.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.53.0",
     "react-native": "0.74.5",
     "react-native-gesture-handler": "~2.16.1",
     "react-native-get-random-values": "^1.11.0",
@@ -53,8 +55,10 @@
     "react-native-svg": "15.2.0",
     "react-native-url-polyfill": "^2.0.0",
     "react-native-web": "~0.19.10",
+    "sonner-native": "^0.12.1",
     "tailwind-merge": "^2.5.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
