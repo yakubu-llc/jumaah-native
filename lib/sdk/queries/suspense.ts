@@ -17,6 +17,17 @@ export const useAccountServiceGetAllAccountsSuspense = <TData = Common.AccountSe
   limit?: number;
 } = {}, queryKey?: TQueryKey, options?: Omit<UseQueryOptions<TData, TError>, "queryKey" | "queryFn">) => useSuspenseQuery<TData, TError>({ queryKey: Common.UseAccountServiceGetAllAccountsKeyFn({ cursor, limit }, queryKey), queryFn: () => AccountService.getAllAccounts({ cursor, limit }) as TData, ...options });
 /**
+* Get account by user ID
+* Get account by user ID.
+* @param data The data for the request.
+* @param data.userId
+* @returns SingleAccountResponseBody OK
+* @throws ApiError
+*/
+export const useAccountServiceGetAccountByUserIdSuspense = <TData = Common.AccountServiceGetAccountByUserIdDefaultResponse, TError = unknown, TQueryKey extends Array<unknown> = unknown[]>({ userId }: {
+  userId: string;
+}, queryKey?: TQueryKey, options?: Omit<UseQueryOptions<TData, TError>, "queryKey" | "queryFn">) => useSuspenseQuery<TData, TError>({ queryKey: Common.UseAccountServiceGetAccountByUserIdKeyFn({ userId }, queryKey), queryFn: () => AccountService.getAccountByUserId({ userId }) as TData, ...options });
+/**
 * Get account by ID
 * Get account by ID.
 * @param data The data for the request.

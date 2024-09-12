@@ -9,6 +9,12 @@ export const UseAccountServiceGetAllAccountsKeyFn = ({ cursor, limit }: {
   cursor?: number;
   limit?: number;
 } = {}, queryKey?: Array<unknown>) => [useAccountServiceGetAllAccountsKey, ...(queryKey ?? [{ cursor, limit }])];
+export type AccountServiceGetAccountByUserIdDefaultResponse = Awaited<ReturnType<typeof AccountService.getAccountByUserId>>;
+export type AccountServiceGetAccountByUserIdQueryResult<TData = AccountServiceGetAccountByUserIdDefaultResponse, TError = unknown> = UseQueryResult<TData, TError>;
+export const useAccountServiceGetAccountByUserIdKey = "AccountServiceGetAccountByUserId";
+export const UseAccountServiceGetAccountByUserIdKeyFn = ({ userId }: {
+  userId: string;
+}, queryKey?: Array<unknown>) => [useAccountServiceGetAccountByUserIdKey, ...(queryKey ?? [{ userId }])];
 export type AccountServiceGetAccountByIdDefaultResponse = Awaited<ReturnType<typeof AccountService.getAccountById>>;
 export type AccountServiceGetAccountByIdQueryResult<TData = AccountServiceGetAccountByIdDefaultResponse, TError = unknown> = UseQueryResult<TData, TError>;
 export const useAccountServiceGetAccountByIdKey = "AccountServiceGetAccountById";

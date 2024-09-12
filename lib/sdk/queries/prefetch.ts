@@ -17,6 +17,17 @@ export const prefetchUseAccountServiceGetAllAccounts = (queryClient: QueryClient
   limit?: number;
 } = {}) => queryClient.prefetchQuery({ queryKey: Common.UseAccountServiceGetAllAccountsKeyFn({ cursor, limit }), queryFn: () => AccountService.getAllAccounts({ cursor, limit }) });
 /**
+* Get account by user ID
+* Get account by user ID.
+* @param data The data for the request.
+* @param data.userId
+* @returns SingleAccountResponseBody OK
+* @throws ApiError
+*/
+export const prefetchUseAccountServiceGetAccountByUserId = (queryClient: QueryClient, { userId }: {
+  userId: string;
+}) => queryClient.prefetchQuery({ queryKey: Common.UseAccountServiceGetAccountByUserIdKeyFn({ userId }), queryFn: () => AccountService.getAccountByUserId({ userId }) });
+/**
 * Get account by ID
 * Get account by ID.
 * @param data The data for the request.

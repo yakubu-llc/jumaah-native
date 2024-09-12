@@ -1,14 +1,13 @@
 import { Stack } from 'expo-router';
 import { View } from 'react-native';
-
-import { ScreenContent } from '../../components/screen-content';
+import { Text } from '@/components/ui/text'
 
 export default function Home() {
   return (
     <>
       <Stack.Screen options={{ title: 'Tab Two' }} />
       <View className="flex-1 p-24">
-        <ScreenContent path="app/(tabs)/two.tsx" title="Tab Two" />
+        <Text>Tab Two</Text>
       </View>
     </>
   );

@@ -1,16 +1,14 @@
 import { Stack } from 'expo-router';
 import { StyleSheet, View } from 'react-native'
-
+import { Text } from '@/components/ui/text'
 import { Auth } from '@/components/auth';
-import { ScreenContent } from '@/components/screen-content';
 
 export default function Login() {
-
   return (
     <>
       <Stack.Screen options={{ title: 'Login' }} />
       <View style={styles.container}>
-        <ScreenContent path="app/(auth)/login.tsx" title="Login" />
+        <Text>Login</Text>
         <Auth />
       </View>
     </>
