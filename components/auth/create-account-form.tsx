@@ -1,18 +1,27 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm, Controller } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { ComponentPropsWithoutRef, FC, useState } from "react"
-import { cn, errorDetails } from "@/lib/utils";
+import { errorDetails } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { z } from "zod";
 import { Text } from "../ui/text";
 import { View } from "react-native";
-import { FormInputController } from "../controllers/form-input-controller";
 import { useAccountServiceCreateAccount } from "@/lib/sdk/queries";
 import { toast } from "sonner-native";
 import { router } from "expo-router";
 import { LoaderCircle } from "@/lib/icons/LoaderCircle";
 import { useAuth } from "@/components/providers/auth-provider";
 import { ApiError } from "@/lib/sdk/requests";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "../ui/input";
 
 export interface CreateAccountFormProps extends ComponentPropsWithoutRef<typeof View> {
   userId: string
@@ -48,11 +57,7 @@ export const CreateAccountForm: FC<CreateAccountFormProps> = ({ userId, classNam
     }
   })
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors }
-  } = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       userId,
@@ -61,16 +66,43 @@ export const CreateAccountForm: FC<CreateAccountFormProps> = ({ userId, classNam
   })
 
   const onSubmit = async (requestBody: z.infer<typeof formSchema>) => {
+    console.log(requestBody)
     await create({ requestBody })
   }
 
   return (
-    <View className={cn(className)} {...props}>
-      <Text>Name</Text>
-      <FormInputController control={control} name="name" errors={errors} />
-      <Button onPress={handleSubmit(onSubmit)} disabled={isCreating}>
-        {isCreating ? <LoaderCircle className="w-4 h-4 mr-2 animate-spin" /> : <Text>Create Account</Text>}
-      </Button>
-    </View>
+    <Form {...form}>
+      <View className="space-y-8">
+        {/* <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8"> */}
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <FormItem>
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input
+                  onBlur={onBlur}
+                  onChangeText={value => onChange(value)}
+                  value={value}
+                  placeholder="shadcn"
+                />
+              </FormControl>
+              <FormDescription>
+                This is your public display name.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button onPress={form.handleSubmit(onSubmit)} disabled={isCreating}>
+          <Text>
+            {isCreating && <LoaderCircle className="w-4 h-4 mr-2 animate-spin" />}
+            Create Account
+          </Text>
+        </Button>
+        {/* </form> */}
+      </View>
+    </Form>
   );
 };

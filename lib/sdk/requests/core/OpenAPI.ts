@@ -41,7 +41,7 @@ export type OpenAPIConfig = {
 };
 
 export const OpenAPI: OpenAPIConfig = {
-  BASE: '',
+  BASE: 'https://lh.waitq.sh',
   CREDENTIALS: 'include',
   ENCODE_PATH: undefined,
   HEADERS: undefined,
