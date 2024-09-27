@@ -5,10 +5,10 @@ import { StatusBar } from 'expo-status-bar';
 import { useColorScheme } from '@/lib/useColorScheme';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 import { PortalHost } from '@rn-primitives/portal';
-import { AuthProvider } from '@/components/providers/auth-provider';
+// import { AuthProvider } from '@/components/providers/auth-provider';
 import { ReactQueryProvider } from '@/components/providers/react-query-provider';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Toaster } from 'sonner-native';
+// import { Toaster } from 'sonner-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export {
@@ -24,13 +24,13 @@ export default function RootLayout() {
       <GestureHandlerRootView>
         <ThemeProvider>
           <ReactQueryProvider>
-            <AuthProvider>
+            {/* <AuthProvider> */}
               {/* <Text>{session?.access_token}</Text> */}
               <StatusBar style={isDarkColorScheme ? 'light' : 'dark'} />
               <Stack />
               <PortalHost />
-              <Toaster />
-            </AuthProvider>
+              {/* <Toaster /> */}
+            {/* </AuthProvider> */}
           </ReactQueryProvider>
         </ThemeProvider>
       </GestureHandlerRootView>

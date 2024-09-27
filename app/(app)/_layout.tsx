@@ -17,9 +17,9 @@ export default function AppLayout() {
   }, [account, isLoading])
 
   // dont render anything while loading or redirecting
-  if (isLoading || !account) {
-    return <Text>Loading...</Text>
-  } 
+  // if (isLoading || !account) {
+  //   return <Text>Loading...</Text>
+  // } 
 
   return (
     <ReactQueryProvider>
@@ -28,14 +28,16 @@ export default function AppLayout() {
           name="index"
           options={{
             title: 'Home',
-            tabBarIcon: ({ focused }) => <Users size={28} className={cn(focused ? 'text-primary' : 'text-muted-foreground')} />,
+            tabBarActiveTintColor: 'black',
+            tabBarIcon: ({ focused }) => <Users size={28} className={cn(focused ? 'text-black' : 'text-muted-foreground')} />,
           }}
         />
         <Tabs.Screen
           name="two"
           options={{
             title: 'Settings',
-            tabBarIcon: ({ focused }) => <Cog size={28} className={cn(focused ? 'text-primary' : 'text-muted-foreground')} />,
+            tabBarActiveTintColor: 'black',
+            tabBarIcon: ({ focused }) => <Cog size={28} className={cn(focused ? 'text-black' : 'text-muted-foreground')} />,
           }}
         />
       </Tabs>

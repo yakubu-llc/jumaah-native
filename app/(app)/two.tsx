@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Stack.Screen options={{ title: 'Tab Two' }} />
-      <View className="flex-1 p-24">
+      <View className="flex-1 p-24 bg-slate-950">
         <Text>Tab Two</Text>
       </View>
     </>

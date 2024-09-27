@@ -1,6 +1,7 @@
 import 'react-native-url-polyfill/auto';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createClient } from '@supabase/supabase-js';
+import { Platform } from 'react-native'; //added by zee, can remove later if need to.
 import * as aesjs from 'aes-js';
 import * as SecureStore from 'expo-secure-store';
 import 'react-native-get-random-values';
@@ -56,12 +57,15 @@ class LargeSecureStore {
   }
 }
 
+const storage = Platform.OS === 'web' ? window.localStorage : new LargeSecureStore(); //if its the web uses local storage, otherwise custom storage.
+
 const supabase = createClient(
   process.env.EXPO_PUBLIC_SUPABASE_URL!,
   process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY!,
   {
     auth: {
-      storage: new LargeSecureStore(),
+      // storage: new LargeSecureStore(), //left the commented line here just in case..
+      storage,
       autoRefreshToken: true,
       persistSession: true,
       detectSessionInUrl: false,

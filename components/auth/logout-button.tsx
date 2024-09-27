@@ -25,10 +25,10 @@ export const LogoutButton: FC<LogoutButtonProps> = ({ className, ...props }) => 
   return (
     <Button
       onPress={handleLogout}
-      className={cn(className)}
+      className={cn(className="bg-white w-[40vw]")}
       {...props}
     >
-      <Text>Logout</Text>
+      <Text className="text-blue-950">Logout</Text>
     </Button>
   );
 }

@@ -9,7 +9,7 @@ export interface AuthProps
   extends ComponentPropsWithoutRef<typeof AppleAuthentication.AppleAuthenticationButton> { }
 
 export const Auth: FC<AuthProps> = ({ ...props }) => {
-  if (Platform.OS === 'ios')
+  if (Platform.OS === 'ios'){
     return (
       <AppleAuthentication.AppleAuthenticationButton
         {...props}
@@ -52,4 +52,5 @@ export const Auth: FC<AuthProps> = ({ ...props }) => {
         }}
       />
     );
+  }
 };
